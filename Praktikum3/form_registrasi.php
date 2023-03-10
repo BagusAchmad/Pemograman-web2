@@ -100,29 +100,58 @@
                 <th>domisili</th>
                 <th>program studi</th>
                 <th>skill</th>
+                <th>skor</th>
+                <th>keterangan</th>
 
             </tr>
-            <?php
+            <?php 
                 if(isset($_POST['submit'])){
                     $nim = $_POST['nim'];
                     $nama = $_POST['nama'];
                     $email = $_POST['email'];
-                    $jenis_kelamin = $_POST['jenis_kelamin']; 
+                    $jenis_kelamin = $_POST['jenis_kelamin'];
+                    $program_studi = $_POST['program_studi'];
                     $domisili = $_POST['domisili'];
-                    $prodi = $_POST['program_studi'];
-                    $skills = $_POST['skill'];
-            ?>
-            <tr>
-                <td><?= $nim?></td>
-                <td><?= $nama ?></td>
-                <td><?= $email ?></td>
-                <td><?= $jenis_kelamin?></td>
-                <td><?= $domisili?></td>
-                <td><?= $prodi?></td>
-                <TD><?php foreach ($skills as $skill ) { echo $skill . " ";
-                }?></TD>
+                    $skill = $_POST['skill'];
+                    $skor = 0;
+                    ?>
+            <tr class="text-center">
+                <td><?= $nim;?></td>
+                <td><?= $nama;?></td>
+                <td><?= $email;?></td>
+                <td><?= $jenis_kelamin;?></td>
+                <td><?= $domisili;?></td>
+                <td><?= $program_studi;?></td>
+                <td>
+                <?php 
+                foreach($skill as $skill){
+                    foreach ($skills as $key => $value) {
+                        if ($skill == $key) {
+                            $skor += $value;
+                        }
+                    }
+                    echo $skill . "<br>";
+                    }?>
+                </td>
+                <td><?= 
+                $skor;
+                ?></td>
+                <td><?php 
+            
+                    if($skor == 0){
+                        echo  "Tidak Mencukupi";
+                        }elseif($skor > 0 && $skor <= 40){
+                            echo  "Kurang";
+                        }elseif($skor > 40 && $skor <= 60){
+                            echo  "Cukup";
+                        }elseif($skor > 60 && $skor <= 100){
+                            echo  "Baik";
+                        }elseif($skor > 100) {
+                            echo  "Sangat Baik";
+                        }
+                ;?></td>
             </tr>
-            <?php } ?>
+            <?php }?>
         </table>
     </div>
 </body>
