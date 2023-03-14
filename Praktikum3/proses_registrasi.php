@@ -1,4 +1,4 @@
-!<?php 
+<?php 
 
 $domisili = ["Jakarta", "Bogor", "Depok", "Tangerang", "Bekasi"];
 
